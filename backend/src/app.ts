@@ -1,19 +1,24 @@
 import express, { Request, Response, NextFunction, response } from "express";
 import cors from "cors";
 import fs from "fs";
+const serverless = require('serverless-http');
 
 // Start up the Rest API
 const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-const port = 8080;
 app.use(cors());
-app.listen(port, () => console.log(`App is running on port ${port}`));// 4
-app.get("/", (req: Request, res: Response, next: NextFunction) =>
-  res.status(200).json({ message: "api is live" })
-);
+
+// local setup
+// const port = 8080;
+// app.listen(port, () => console.log(`App is running on port ${port}`));// 4
+// app.get("/", (req: Request, res: Response, next: NextFunction) =>
+//   res.status(200).json({ message: "api is live" })
+// );
+
+// lambda hosting
+module.exports.handler = serverless(app)
 
 // HTTP METHODS
 // Get: get all names
