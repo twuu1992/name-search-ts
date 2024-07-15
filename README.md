@@ -27,3 +27,10 @@ The IAC module to create the lambda function which hosts the API
 - Decommission:
     - `terraform destroy`
     - Go to the aws console and remove the logs from `Log Group` in `CloudWatch`
+
+### Manual Deployment
+
+- Setup the aws credentials `aws configure`
+- Create lambda function
+- Give privillege `chmod +x lambda_deploy.sh`
+- Run `./lambda_deploy.sh` 
